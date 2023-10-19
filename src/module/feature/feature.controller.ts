@@ -1,6 +1,7 @@
 import { InjectQueue } from '@nestjs/bull';
 import { Controller, Get } from '@nestjs/common';
 import { Queue } from 'bull';
+import * as os from 'os';
 
 @Controller()
 export class FeatureController {
@@ -67,5 +68,16 @@ export class FeatureController {
     };
 
     console.log(memoryUsage);
+  }
+
+  @Get('os')
+  async getOSMemoryInfo() {
+    const freeMemory = os.freemem();
+    const totalMemory = os.totalmem();
+
+    return {
+      freeMemory,
+      totalMemory,
+    };
   }
 }
