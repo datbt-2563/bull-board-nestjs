@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common';
 import { BullAdapter } from '@bull-board/api/bullAdapter';
 import { BullModule } from '@nestjs/bull';
 import { BullBoardModule } from '@bull-board/nestjs';
-
+import { FeatureProcessor } from './feature.processor';
+import { FeatureController } from './feature.controller';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { BullBoardModule } from '@bull-board/nestjs';
       adapter: BullAdapter, //or use BullAdapter if you're using bull instead of bullMQ
     }),
   ],
-  controllers: [],
-  providers: [],
+  controllers: [FeatureController],
+  providers: [FeatureProcessor],
 })
 export class FeatureModule {}
